@@ -2,6 +2,8 @@ from enum import Enum
 import random
 import sys
 
+gameCount = 0
+
 def playGame():
     class RPS(Enum): 
         ROCK = 1
@@ -22,23 +24,33 @@ def playGame():
     print("Python AI chose " + str(RPS(ai)).replace("RPS.", "" ).lower())
 
     # User win conditions
-    if choice == 1 and ai == 3: 
-        print("You win! 🎉")
+    def decideWinner(choice, ai):
+        if choice == 1 and ai == 3: 
+            return "You win! 🎉"
 
-    elif choice == 2 and ai == 1: 
-        print("You win! 🥳")
+        elif choice == 2 and ai == 1: 
+            return "You win! 🥳"
 
-    elif choice == 3 and ai == 2: 
-        print("You win! 🎊") 
-    # Draw
-    elif choice == ai: 
-        print("Draw! 😵")
+        elif choice == 3 and ai == 2: 
+            return "You win! 🎊"
+        # Draw
+        elif choice == ai: 
+            return "Draw! 😵"
 
-    # Python AI I win conditionn
-    else: 
-        print("Python AI wins! 🤖")
+        # Python AI I win conditionn
+        else: 
+            return "Python AI wins! 🤖"
         
+    gameResult = decideWinner(choice, ai)
+    print(gameResult)
+
+    global gameCount
+    gameCount += 1
+        
+    print("\nGames played:" + " " + str(gameCount))
+
     print("\nWanna play again(y/n)?")
+
     while True:
         playAgain = input()
         if playAgain.lower() not in ["y", "n"]:
