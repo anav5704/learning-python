@@ -1,23 +1,19 @@
-import sys
-import random
 from enum import Enum
+import random
+import sys
 
-class RPS(Enum): 
-    ROCK = 1
-    PAPER = 2
-    SCISSORS = 3   
+def playGame():
+    class RPS(Enum): 
+        ROCK = 1
+        PAPER = 2
+        SCISSORS = 3   
 
-play_again = True 
-
-while play_again:
-
-    print("")
-
-    playerChice = input("Enter... \n 1. Rock \n 2. Paper \n 3. Scissors \n\n") # Game instructionsj
+    playerChice = input("\nEnter... \n 1. Rock \n 2. Paper \n 3. Scissors \n\n") # Game instructionsj
     choice = int(playerChice) # Change type from string to interger
 
-    if choice < 1 or choice > 3: 
-        sys.exit("Invalid input") # Exit program with message0
+    if playerChice not in ["1", "2", "3"]:
+        print("Option not valid")
+        return playGame()
 
     AI_choice = random.choice("123") # Random number from 1 -3
     ai = int(AI_choice) # Change type from string to interger
@@ -42,11 +38,18 @@ while play_again:
     else: 
         print("Python AI wins! 🤖")
         
-    play_again = input("\nWanna play again(y/N)?")
+    print("\nWanna play again(y/n)?")
+    while True:
+        playAgain = input()
+        if playAgain.lower() not in ["y", "n"]:
+            continue
+        else:
+            break
 
-    if play_again == "y":
-        continue
+    if playAgain == "y":
+        return playGame()
     
-    elif play_again == "N": 
-        print("Bye Bye!")
-        break
+    elif playAgain == "n": 
+        sys.exit("Bye Bye!")
+
+playGame()
