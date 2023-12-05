@@ -26,8 +26,8 @@ def game():
         AI_choice = random.choice("123") # Random number from 1 -3
         ai = int(AI_choice) # Change type from string to interger
 
-        print("You chose " + str(RPS(choice)).replace("RPS.", "" ).lower())
-        print("Python AI chose " + str(RPS(ai)).replace("RPS.", "" ).lower())
+        print(f"You chose {str(RPS(choice)).replace("RPS.", "" ).lower()}")
+        print(f"Python AI chose {str(RPS(ai)).replace("RPS.", "" ).lower()}")
 
         # User win conditions
         def decideWinner(choice, ai):
@@ -60,8 +60,8 @@ def game():
         nonlocal gameCount
         gameCount += 1
             
-        print("\nGames played:" + " " + str(gameCount))
-        print("Your wins: " + str(player_wins) + " |  Python wins: " + str(ai_wins))
+        print(f"\nGames played: {str(gameCount)}")
+        print(f"Your wins: {str(player_wins)} |  Python wins:  {str(ai_wins)}")
 
         print("\nWanna play again(y/n)?")
 
