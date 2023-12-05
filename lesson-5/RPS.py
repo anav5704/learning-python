@@ -2,12 +2,13 @@ from enum import Enum
 import random
 import sys
 
-def game():
+def game(name ="Player One"):
     gameCount = 0
     player_wins = 0
     ai_wins = 0
 
     def playGame():
+        nonlocal name
         nonlocal player_wins
         nonlocal ai_wins
 
@@ -16,7 +17,7 @@ def game():
             PAPER = 2
             SCISSORS = 3   
 
-        playerChice = input("\nEnter... \n 1. Rock \n 2. Paper \n 3. Scissors \n\n") # Game instructionsj
+        playerChice = input(f"\n Hi {name}, enter... \n 1. Rock \n 2. Paper \n 3. Scissors \n\n") # Game instructionsj
         choice = int(playerChice) # Change type from string to interger
 
         if playerChice not in ["1", "2", "3"]:
@@ -60,8 +61,8 @@ def game():
         nonlocal gameCount
         gameCount += 1
             
-        print(f"\nGames played: {str(gameCount)}")
-        print(f"Your wins: {str(player_wins)} |  Python wins:  {str(ai_wins)}")
+        print(f"\nGames played: {gameCount}")
+        print(f"{name} wins: {player_wins} |  Python wins:  {ai_wins}")
 
         print("\nWanna play again(y/n)?")
 
@@ -80,7 +81,19 @@ def game():
 
     return playGame
 
-rock_paper_scissors = game()
-
 if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Customize your game"
+    )
+
+    parser.add_argument(
+        "-n", "--name", metavar="name",
+        required=True, help="The name of player"
+    )
+
+    args = parser.parse_args()
+
+    rock_paper_scissors = game(args.name)
     rock_paper_scissors()
