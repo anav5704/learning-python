@@ -80,5 +80,7 @@ def game():
 
     return playGame
 
-start = game()
-start()
+rock_paper_scissors = game()
+
+if __name__ == "__main__":
+    rock_paper_scissors()
