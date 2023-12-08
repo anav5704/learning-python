@@ -12,7 +12,6 @@ def getWeather():
     data = requests.get(url).json()
 
     print(f'\nCurrent weather for {data["name"]}:')
-    print(f'\nThe temp is {data["main"]["temp"]:.1f}°')
     print(f'\n{data["weather"][0]["description"].capitalize()} and feels like {data["main"]["feels_like"]:.1f}°\n')
     
 getWeather()
